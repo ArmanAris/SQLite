@@ -24,23 +24,35 @@ class MainActivity : AppCompatActivity() {
         val last: EditText = findViewById(R.id.last)
         val phone: EditText = findViewById(R.id.phone)
         val save_btn: Button = findViewById(R.id.save)
+        val select = findViewById<Button>(R.id.button)
 
+        arman = Profile_Table(this)
+
+
+        var profile = Profile()
         save_btn.setOnClickListener {
             if (!TextUtils.isEmpty(first.text.toString()) && !TextUtils.isEmpty(last.text.toString()) && !TextUtils.isEmpty(
                     phone.text.toString())
             ) {
-                var profile: Profile = Profile()
+
                 profile.first_name = first.text.toString()
                 profile.last_name = last.text.toString()
                 profile.phone_number = phone.text.toString()
                 save(profile)
                 Toast.makeText(this, "اظلاعات ذخیره شد.", Toast.LENGTH_SHORT).show()
-                save(profile)
-                startActivity(Intent(this,page2::class.java))
+
+                startActivity(Intent(this, page2::class.java))
 
             } else {
                 Toast.makeText(this, "اظلاعات را تکمیل کنید!!!!!", Toast.LENGTH_SHORT).show()
             }
+        }
+
+
+
+
+        select.setOnClickListener {
+            startActivity(Intent(this, page2::class.java))
         }
     }
 

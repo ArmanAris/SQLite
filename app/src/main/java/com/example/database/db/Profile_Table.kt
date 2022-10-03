@@ -59,6 +59,8 @@ class Profile_Table(context: Context) : SQLiteOpenHelper(context, name_db, null,
             profile.phone_number = cursor.getString(cursor.getColumnIndex(phone_number_c).toInt())
             profile.data = cursor.getLong(cursor.getColumnIndex(date_c).toInt())
 
+
+            // dont need
             var dateformat: DateFormat = DateFormat.getDateInstance()
             var datedate =
                 dateformat.format(Date(cursor.getLong(cursor.getColumnIndex(date_c).toInt())).time)

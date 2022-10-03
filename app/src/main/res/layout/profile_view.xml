@@ -2,12 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_width="409dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -16,29 +17,40 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/phone_number_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/last_name_textView"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_toRightOf="@id/imageView"
+                android:text="09212365410" />
+
             <Button
-                android:id="@+id/button"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_alignBottom="@id/textView"
+                android:id="@+id/button_delete"
+                android:layout_width="36dp"
+                android:layout_height="27dp"
+                android:layout_alignBottom="@id/first_name_viewtext"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@android:drawable/ic_menu_delete"
-                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <Button
-                android:id="@+id/button2"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_alignBottom="@id/textView"
+                android:id="@+id/button_edit"
+                android:layout_width="36dp"
+                android:layout_height="27dp"
+                android:layout_alignBottom="@id/first_name_viewtext"
                 android:layout_marginEnd="10dp"
-                android:layout_toLeftOf="@id/button"
+                android:layout_marginRight="22dp"
+                android:layout_toLeftOf="@id/button_delete"
                 android:background="@android:drawable/ic_menu_edit"
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/date_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/imageView"
@@ -46,30 +58,30 @@
                 android:text="Date: 10 April 2022" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/last_name_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textView"
+                android:layout_below="@id/first_name_viewtext"
                 android:layout_marginLeft="4dp"
                 android:layout_toRightOf="@id/imageView"
-                android:text="09212365410" />
+                android:text="aris" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/first_name_viewtext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="4dp"
                 android:layout_toRightOf="@id/imageView"
                 android:paddingBottom="10dp"
-                android:text="Arman Aris"
+                android:text="arman"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="85dp"
                 android:contentDescription="@string/image"
                 app:srcCompat="@mipmap/ic_launcher" />
         </RelativeLayout>
