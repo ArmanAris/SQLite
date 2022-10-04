@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
     fun page2() {
         if (arman!!.count_profile() > 0) {
             startActivity(Intent(this, page2::class.java))
+            finish()
         }
     }
 
