@@ -116,7 +116,7 @@ class Profile_Table(context: Context) : SQLiteOpenHelper(context, name_db, null,
         var db: SQLiteDatabase = readableDatabase
         var select_all = "SELECT * FROM $name_table"
         var cursor: Cursor = db.rawQuery(select_all, null)
-        return cursor.count
+        return cursor.count.toInt()
 
     }
 

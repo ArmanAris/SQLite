@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -20,21 +19,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val first: EditText = findViewById(R.id.first)
-        val last: EditText = findViewById(R.id.last)
-        val phone: EditText = findViewById(R.id.phone)
-        val save_btn: Button = findViewById(R.id.save)
-        val select = findViewById<Button>(R.id.button)
+            val first: EditText = findViewById(R.id.firstp)
+            val last: EditText = findViewById(R.id.lastp)
+            val phone: EditText = findViewById(R.id.phonep)
+            val save_btn: Button = findViewById(R.id.savep)
+
 
         arman = Profile_Table(this)
+        page2()
 
 
-        var profile = Profile()
         save_btn.setOnClickListener {
             if (!TextUtils.isEmpty(first.text.toString()) && !TextUtils.isEmpty(last.text.toString()) && !TextUtils.isEmpty(
                     phone.text.toString())
             ) {
-
+                var profile = Profile()
                 profile.first_name = first.text.toString()
                 profile.last_name = last.text.toString()
                 profile.phone_number = phone.text.toString()
@@ -49,15 +48,16 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
-
-        select.setOnClickListener {
-            startActivity(Intent(this, page2::class.java))
-        }
     }
 
     fun save(profile: Profile) {
         arman?.create_profile(profile)
+    }
+
+    fun page2() {
+        if (arman!!.count_profile() > 0) {
+            startActivity(Intent(this, page2::class.java))
+        }
     }
 
 }
