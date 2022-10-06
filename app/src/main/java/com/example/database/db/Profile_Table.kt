@@ -12,6 +12,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class Profile_Table(context: Context) : SQLiteOpenHelper(context, name_db, null, ver_db) {
+
     override fun onCreate(db: SQLiteDatabase?) {
 
         var create_table =
@@ -98,6 +99,11 @@ class Profile_Table(context: Context) : SQLiteOpenHelper(context, name_db, null,
     fun delete_profile(profile: Profile) {
         var db: SQLiteDatabase = writableDatabase
         db.delete(name_table, "$id_c=?", arrayOf(profile.id.toString()))
+    }
+
+    fun delete_profile(id: Int) {
+        var db: SQLiteDatabase = writableDatabase
+        db.delete(name_table, "$id_c=?", arrayOf(id.toString()))
     }
 
     fun update_profile(profile: Profile){

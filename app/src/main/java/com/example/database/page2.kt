@@ -29,17 +29,9 @@ class page2 : AppCompatActivity() {
 
         dbprof = Profile_Table(this)
 
-        list = dbprof!!.read_profile()
-        list.reverse()
+        get()
 
-        val adaptor = Adaptor_database(this, list)
-        val maneger = LinearLayoutManager(this)
 
-        var arman = findViewById<RecyclerView>(R.id.arman)
-        arman.adapter = adaptor
-        arman.layoutManager = maneger
-
-        adaptor.notifyDataSetChanged()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -59,6 +51,9 @@ class page2 : AppCompatActivity() {
         var phone = view.findViewById<TextView>(R.id.phonep)
         var save = view.findViewById<Button>(R.id.savep)
 
+        var alert = AlertDialog.Builder(this).setView(view).create()
+        alert.show()
+
         save.setOnClickListener {
             if (!TextUtils.isEmpty(name.text.toString()
                     .trim()) && !TextUtils.isEmpty(last.text.toString()
@@ -71,18 +66,28 @@ class page2 : AppCompatActivity() {
                 profile.phone_number = phone.text.toString()
                 dbprof?.create_profile(profile)
                 Toast.makeText(this, "اظلاعات ذخیره شد.", Toast.LENGTH_SHORT).show()
+                alert.dismiss()
+                get()
 
-               startActivity(Intent(this, page2::class.java))
-                finish()
+                // startActivity(Intent(this, page2::class.java))
+                //  finish()
             } else {
                 Toast.makeText(this, "اظلاعات را تکمیل کنید!!!!!", Toast.LENGTH_SHORT).show()
             }
 
         }
 
-        AlertDialog.Builder(this).setView(view).create().show()
-
 
     }
 
+    fun get() {
+        list = dbprof!!.read_profile()
+        list.reverse()
+        val adaptor = Adaptor_database(this, list)
+        val maneger = LinearLayoutManager(this)
+        var arman = findViewById<RecyclerView>(R.id.arman)
+        arman.adapter = adaptor
+        arman.layoutManager = maneger
+        adaptor.notifyDataSetChanged()
+    }
 }
