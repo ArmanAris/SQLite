@@ -1,4 +1,4 @@
-package com.example.database.Adaptor
+package com.example.database.ui.Adaptor
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,8 +9,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.database.R
-import com.example.database.data.Profile
-import com.example.database.db.Profile_Table
+import com.example.database.data.model.Profile
+import com.example.database.data.local.db.Profile_Table
 
 class Adaptor_database(var context: Context, private val list: ArrayList<Profile>) :
     RecyclerView.Adapter<Adaptor_database.viewholder>() {
@@ -44,7 +44,7 @@ class Adaptor_database(var context: Context, private val list: ArrayList<Profile
             first_name_view.text = profile.first_name
             last_name_view.text = profile.last_name
             phone_number_view.text = profile.phone_number
-            date_view.text = profile.data(profile)
+            date_view.text = profile.data
 
 
             var pos = adapterPosition
@@ -63,9 +63,9 @@ class Adaptor_database(var context: Context, private val list: ArrayList<Profile
 
         }
 
-        fun deleteitem(x:Profile) {
+        fun deleteitem(x: Profile) {
             val db = Profile_Table(context)
-            db.delete_profile(x)
+            db.deleteProfile(x)
         }
 
 

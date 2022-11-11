@@ -1,22 +1,20 @@
 package com.example.database
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.database.Adaptor.Adaptor_database
-import com.example.database.data.Profile
-import com.example.database.db.Profile_Table
+import com.example.database.ui.Adaptor.Adaptor_database
+import com.example.database.data.model.Profile
+import com.example.database.data.local.db.Profile_Table
 
 class page2 : AppCompatActivity() {
 
@@ -64,7 +62,7 @@ class page2 : AppCompatActivity() {
                 profile.first_name = name.text.toString()
                 profile.last_name = last.text.toString()
                 profile.phone_number = phone.text.toString()
-                dbprof?.create_profile(profile)
+                dbprof?.createProfile(profile)
                 Toast.makeText(this, "اظلاعات ذخیره شد.", Toast.LENGTH_SHORT).show()
                 alert.dismiss()
                 get()
@@ -81,7 +79,7 @@ class page2 : AppCompatActivity() {
     }
 
     fun get() {
-        list = dbprof!!.read_profile()
+        list = dbprof!!.readProfile()
         list.reverse()
         val adaptor = Adaptor_database(this, list)
         val maneger = LinearLayoutManager(this)
