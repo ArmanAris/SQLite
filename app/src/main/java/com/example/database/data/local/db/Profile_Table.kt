@@ -37,7 +37,7 @@ class Profile_Table(context: Context) : SQLiteOpenHelper(context, name_db, null,
         values.put(last_name_c, profile.last_name)
         values.put(phone_number_c, profile.phone_number)
 
-        val dataSimple = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val dataSimple = SimpleDateFormat("yyyy-MM-dd")
         val date = Date(System.currentTimeMillis())
         val result = dataSimple.format(date)
 
@@ -95,7 +95,7 @@ class Profile_Table(context: Context) : SQLiteOpenHelper(context, name_db, null,
         values.put(last_name_c, profile.last_name)
         values.put(phone_number_c, profile.phone_number)
 
-        val dataSimple = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val dataSimple = SimpleDateFormat("yyyy-MM-dd")
         val date = Date(System.currentTimeMillis())
         val result = dataSimple.format(date)
 
