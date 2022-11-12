@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">DataBase</string>
     <string name="image">image</string>
+    <string name="first_name">first name</string>
+    <string name="last_name">last name</string>
+    <string name="save">Save</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.database
 
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -12,24 +13,20 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.database.ui.Adaptor.Adaptor_database
+import com.example.database.ui.Adaptor.AdaptorDatabase
 import com.example.database.data.model.Profile
 import com.example.database.data.local.db.Profile_Table
 
 class page2 : AppCompatActivity() {
 
-    var dbprof: Profile_Table? = null
+    var db: Profile_Table? = null
     lateinit var list: ArrayList<Profile>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_page2)
 
-        dbprof = Profile_Table(this)
-
         get()
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -43,13 +40,13 @@ class page2 : AppCompatActivity() {
     }
 
     fun pop() {
-        var view = LayoutInflater.from(this).inflate(R.layout.popuplayout, null)
-        var name = view.findViewById<TextView>(R.id.firstp)
-        var last = view.findViewById<TextView>(R.id.lastp)
-        var phone = view.findViewById<TextView>(R.id.phonep)
-        var save = view.findViewById<Button>(R.id.savep)
+        val view = LayoutInflater.from(this).inflate(R.layout.popuplayout, null)
+        val name = view.findViewById<TextView>(R.id.firstp)
+        val last = view.findViewById<TextView>(R.id.lastp)
+        val phone = view.findViewById<TextView>(R.id.phonep)
+        val save = view.findViewById<Button>(R.id.savep)
 
-        var alert = AlertDialog.Builder(this).setView(view).create()
+        val alert = AlertDialog.Builder(this).setView(view).create()
         alert.show()
 
         save.setOnClickListener {
@@ -58,11 +55,11 @@ class page2 : AppCompatActivity() {
                     .trim()) && !TextUtils.isEmpty(
                     phone.text.toString().trim())
             ) {
-                var profile = Profile()
+                val profile = Profile()
                 profile.first_name = name.text.toString()
                 profile.last_name = last.text.toString()
                 profile.phone_number = phone.text.toString()
-                dbprof?.createProfile(profile)
+                db!!.createProfile(profile)
                 Toast.makeText(this, "اظلاعات ذخیره شد.", Toast.LENGTH_SHORT).show()
                 alert.dismiss()
                 get()
@@ -79,13 +76,15 @@ class page2 : AppCompatActivity() {
     }
 
     fun get() {
-        list = dbprof!!.readProfile()
+        db = Profile_Table(this)
+        list = db!!.readProfile()
         list.reverse()
-        val adaptor = Adaptor_database(this, list)
+
+        val adaptor = AdaptorDatabase(this, list)
         val maneger = LinearLayoutManager(this)
-        var arman = findViewById<RecyclerView>(R.id.arman)
+        val arman = findViewById<RecyclerView>(R.id.arman)
         arman.adapter = adaptor
         arman.layoutManager = maneger
-        adaptor.notifyDataSetChanged()
     }
+
 }
